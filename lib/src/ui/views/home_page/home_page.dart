@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../shared/responsive_safe_area.dart';
 import '../../../util/assets.dart';
+import '../../shared/responsive_safe_area.dart';
+import 'package:shorty/src/ui/views/on_boarding_screens/on_boarding_screens.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -45,7 +46,10 @@ class HomePage extends StatelessWidget {
                   width: size.width * .8,
                   height: size.height * .07,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => OnBoardingScreens()));
+                    },
                     child: Text("START"),
                   ))
             ],

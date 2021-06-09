@@ -33,25 +33,37 @@ class AppTheme {
     color: grayishViolet,
   );
 
-  final _buttonTextStyle = GoogleFonts.poppins(
+  final _elevatedButtonTextStyle = GoogleFonts.poppins(
     fontWeight: FontWeight.w700,
     fontSize: 20,
     color: Colors.white,
+  );
+
+  final _textButtonTextStyle = GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+    fontSize: 20,
+    color: grayishViolet,
   );
 
   ThemeData get theme {
     return ThemeData.light().copyWith(
         primaryColor: cyan,
         accentColor: darkViolet,
+        textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+                foregroundColor:
+                    MaterialStateProperty.all<Color>(grayishViolet),
+                textStyle: MaterialStateProperty.all<TextStyle>(
+                    _textButtonTextStyle))),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(cyan),
-        )),
+                backgroundColor: MaterialStateProperty.all<Color>(cyan),
+                textStyle: MaterialStateProperty.all<TextStyle>(
+                    _elevatedButtonTextStyle))),
         textTheme: TextTheme(
           headline1: _headLine1,
           headline2: _headLine2,
           bodyText1: _bodyText1,
-          button: _buttonTextStyle,
         ));
   }
 }
