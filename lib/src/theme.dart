@@ -37,9 +37,11 @@ class AppTheme {
     return ThemeData.light().copyWith(
         primaryColor: cyan,
         accentColor: darkViolet,
-        textTheme: TextTheme(
-            headline1: _headLine1,
-            headline2: _headLine2,
-            bodyText1: _bodyText1));
+        textTheme: GoogleFonts.poppinsTextTheme()
+        // textTheme: TextTheme(
+        //     headline1: _headLine1,
+        //     headline2: _headLine2,
+        //     bodyText1: _bodyText1)
+            );
   }
 }
