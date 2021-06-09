@@ -17,7 +17,7 @@ class AppTheme {
 
   final _headLine1 = GoogleFonts.poppins(
     fontWeight: FontWeight.w700,
-    fontSize: 20,
+    fontSize: 26,
     color: grayishViolet,
   );
 
@@ -33,15 +33,25 @@ class AppTheme {
     color: grayishViolet,
   );
 
+  final _buttonTextStyle = GoogleFonts.poppins(
+    fontWeight: FontWeight.w700,
+    fontSize: 20,
+    color: Colors.white,
+  );
+
   ThemeData get theme {
     return ThemeData.light().copyWith(
         primaryColor: cyan,
         accentColor: darkViolet,
-        textTheme: GoogleFonts.poppinsTextTheme()
-        // textTheme: TextTheme(
-        //     headline1: _headLine1,
-        //     headline2: _headLine2,
-        //     bodyText1: _bodyText1)
-            );
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(cyan),
+        )),
+        textTheme: TextTheme(
+          headline1: _headLine1,
+          headline2: _headLine2,
+          bodyText1: _bodyText1,
+          button: _buttonTextStyle,
+        ));
   }
 }
