@@ -1,11 +1,24 @@
+import 'package:hive/hive.dart';
+
+part 'shorten_url.g.dart';
+
+@HiveType(typeId: 0)
 class ShortenUrl {
+  @HiveField(0)
   late String code;
+  @HiveField(1)
   late String shortLink;
+  @HiveField(2)
   late String fullShortLink;
+  @HiveField(3)
   late String shortLink2;
+  @HiveField(4)
   late String fullShortLink2;
+  @HiveField(5)
   late String shareLink;
+  @HiveField(6)
   late String fullShareLink;
+  @HiveField(7)
   late String originalLink;
 
   ShortenUrl(
