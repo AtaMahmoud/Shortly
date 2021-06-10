@@ -3,7 +3,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 import 'src/theme.dart';
 import 'src/ui/views/home_page/home_page.dart';
 
@@ -29,7 +28,9 @@ class MyApp extends StatelessWidget {
         const Locale("de"),
       ],
       theme: AppTheme().theme,
-      home: HomePage(),
+      routes: {
+        HomePage.routeName: (context) => HomePage(),
+      },
     );
   }
 }

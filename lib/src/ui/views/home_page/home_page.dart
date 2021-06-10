@@ -7,6 +7,7 @@ import '../../shared/responsive_safe_area.dart';
 import 'package:shorty/src/ui/views/on_boarding_screens/on_boarding_screens.dart';
 
 class HomePage extends StatelessWidget {
+  static const String routeName = "/";
   const HomePage({Key? key}) : super(key: key);
 
   @override
