@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shorty/src/ui/views/main_page/main_page.dart';
 import 'package:shorty/src/ui/views/on_boarding_screens/do_indicator.dart';
 import 'package:shorty/src/ui/views/on_boarding_screens/on_boarding_card.dart';
 
@@ -73,7 +74,12 @@ class _OnBoardingScreensState extends State<OnBoardingScreens> {
             ),
             Padding(
                 padding: const EdgeInsets.only(bottom: 20),
-                child: TextButton(onPressed: () {}, child: Text("Skip"))),
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => MainPage()));
+                    },
+                    child: Text("Skip"))),
           ],
         );
       }),

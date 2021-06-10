@@ -45,10 +45,27 @@ class AppTheme {
     color: grayishViolet,
   );
 
+  final _hintStyle = GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+    fontSize: 18,
+    color: lightGray,
+  );
+
+  static final textFieldTextStyle = GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+    fontSize: 18,
+    color: grayishViolet,
+  );
+
   ThemeData get theme {
     return ThemeData.light().copyWith(
         primaryColor: cyan,
         accentColor: darkViolet,
+        inputDecorationTheme: InputDecorationTheme(
+            border: InputBorder.none,
+            filled: true,
+            fillColor: Colors.white,
+            hintStyle: _hintStyle),
         textButtonTheme: TextButtonThemeData(
             style: ButtonStyle(
                 foregroundColor:
