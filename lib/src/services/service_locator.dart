@@ -26,5 +26,5 @@ void setupServiceLocator() {
       () => ShortUrlServiceImplementation());
 
   serviceLocator.registerLazySingleton<UserViewModel>(() => UserViewModel());
-  serviceLocator.registerSingleton(() => UrlsViewModel());
+  serviceLocator.registerLazySingleton<UrlsViewModel>(() => UrlsViewModel());
 }

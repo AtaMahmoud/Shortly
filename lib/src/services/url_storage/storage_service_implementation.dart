@@ -7,13 +7,13 @@ import 'package:shorty/src/util/constants.dart';
 class StorageServiceImplementation extends UrlStorageService {
   @override
   Future<void> addShortenUrl(ShortenUrl shortenUrl) async {
-    final box = Hive.box(urlsBoxName);
+    final box = Hive.box<ShortenUrl>(urlsBoxName);
     await box.add(shortenUrl);
   }
 
   @override
   Future<void> deleteShortenUrl(int urlIndex) async {
-    final box = Hive.box(urlsBoxName);
+    final box = Hive.box<ShortenUrl>(urlsBoxName);
     await box.deleteAt(urlIndex);
   }
 

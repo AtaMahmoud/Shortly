@@ -25,6 +25,7 @@ void main() async {
 
 Future<void> initHive() async {
   await Hive.initFlutter();
+  Hive.registerAdapter(ShortenUrlAdapter());
   await Hive.openBox<ShortenUrl>(urlsBoxName);
   await Hive.openBox(userSettingsBoxName);
 }

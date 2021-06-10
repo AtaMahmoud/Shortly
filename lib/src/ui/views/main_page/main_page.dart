@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:shorty/src/business_logic/models/view_state.dart';
+import 'package:shorty/src/business_logic/view_models/urls_view_model.dart';
+import 'package:shorty/src/services/service_locator.dart';
 
 import 'package:shorty/src/theme.dart';
 import 'package:shorty/src/ui/shared/logo.dart';
@@ -10,9 +14,22 @@ import 'empty_main_page.dart';
 import '../../../util/overflow_extension.dart';
 import 'shorten_link_card.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  final _urlsViewMode = serviceLocator<UrlsViewModel>();
+  @override
+  void initState() {
+    _urlsViewMode.getShortUrlsHistory();
+    super.initState();
+  }
+
+  final _urlTextFieldController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +38,23 @@ class MainPage extends StatelessWidget {
         return Column(
           children: [
             Expanded(
-                child: Column(
-              children: [ShortenLinkCard()],
+                child: ChangeNotifierProvider.value(
+              value: _urlsViewMode,
+              child: Consumer<UrlsViewModel>(
+                builder: (context, model, child) {
+                  if (_urlsViewMode.state == ViewState.busy) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+
+                  if (_urlsViewMode.shortenUrls.isEmpty) {
+                    return EmptyMainPage();
+                  }
+
+                  return Column(
+                    children: [ShortenLinkCard()],
+                  );
+                },
+              ),
             )),
             Container(
               color: AppTheme.darkViolet,
@@ -43,6 +75,7 @@ class MainPage extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6)),
                             child: TextField(
+                              controller: _urlTextFieldController,
                               style: AppTheme.textFieldTextStyle,
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
@@ -57,7 +90,11 @@ class MainPage extends StatelessWidget {
                             height: size.height * .08,
                             width: double.infinity,
                             child: ElevatedButton(
-                                onPressed: () {}, child: Text("SHORTEN IT!")),
+                                onPressed: () {
+                                  _urlsViewMode
+                                      .shortUrl(_urlTextFieldController.text);
+                                },
+                                child: Text("SHORTEN IT!")),
                           )
                         ],
                       ),
@@ -72,4 +109,3 @@ class MainPage extends StatelessWidget {
     );
   }
 }
-

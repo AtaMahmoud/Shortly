@@ -16,7 +16,7 @@ class WebApiImplementaion implements WebApi {
     try {
       final response =
           await _dio.post("/shorten", queryParameters: {'url': url});
-      return ShortenUrl.fromJson(response.data);
+      return ShortenUrl.fromJson(response.data['result']);
     
     // ignore: avoid_catches_without_on_clauses
     } catch (e) {
