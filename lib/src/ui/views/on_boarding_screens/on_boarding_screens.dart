@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shorty/src/business_logic/view_models/user_view_model.dart';
+import 'package:shorty/src/services/service_locator.dart';
 import 'package:shorty/src/ui/views/main_page/main_page.dart';
 import 'package:shorty/src/ui/views/on_boarding_screens/do_indicator.dart';
 import 'package:shorty/src/ui/views/on_boarding_screens/on_boarding_card.dart';
@@ -78,8 +80,11 @@ class _OnBoardingScreensState extends State<OnBoardingScreens> {
                     onPressed: () {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => MainPage()));
+                      serviceLocator<UserViewModel>()
+                          .setDisplayOnBoardingFlag(value: false);
                     },
-                    child: Text("Skip"))),
+                    child: Text(
+                        currentIndex == cards.length - 1 ? "Next" : "Skip"))),
           ],
         );
       }),
