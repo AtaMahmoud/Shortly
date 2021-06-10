@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shorty/src/services/service_locator.dart';
 
 import 'src/theme.dart';
 import 'src/ui/views/home_page/home_page.dart';
 
 // ignore_for_file: public_member_api_docs
 void main() {
+  setupServiceLocator();
   runApp(MyApp());
 }
 
