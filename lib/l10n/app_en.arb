@@ -1,0 +1,83 @@
+{
+  "appTitle": "Shorty",
+  "@appTitle": {
+    "type": "text"
+  },
+
+  "moreThanJustShorterLinks":"More than just \n shorter links",
+  "@moreThanJustShorterLinks": {
+    "type": "text"
+  },
+  "brandRecognitionAndDetailsInsights":"Build your brand’s recognition and get detailed insights on how your links are performing.",
+  "@brandRecognitionAndDetailsInsights":{
+    "type": "text"
+  },
+  "start":"Start",
+  "@start":{
+    "type": "text"
+  },
+  "brandRecognition":"Brand Recognition",
+  "@brandRecognition":{
+    "type": "text"
+  },
+  "boostYourBrandRecognitionAndBrandedLinks":"Boost your brand recognition with each click. Generic links don’t mean a thing. Branded links help instill confidence in your content.",
+  "@boostYourBrandRecognitionAndBrandedLinks":{
+    "type": "text"
+  },
+  "detailedRecords":"Detailed Records",
+  "@detailedRecords":{
+    "type": "text"
+  },
+  "gainInsightsAndEngagementWithContent":"Gain insights into who is clicking your links. Knowing when and where people engage with your content helps inform better decisions.",
+  "@gainInsightsAndEngagementWithContent":{
+    "type": "text"
+  },
+  "fullyCustomizable":"Fully Customizable",
+  "@fullyCustomizable":{
+    "type": "text"
+  },
+  "improveBrandAwareness":"lmprove brand awareness and content discoverability through customizable links, supercharging audience engagement",
+  "@improveBrandAwareness":{
+    "type": "text"
+  },
+  "next":"Next",
+  "@next":{
+    "type": "text"
+  },
+  "skip":"Skip",
+  "@skip":{
+    "type": "text"
+  },
+  "letsGetStarted":"Let’s get started!",
+  "@letsGetStarted":{
+    "type": "text"
+  },
+  "pastYourFirstLink":"Paste your first link into \n the field to shorten it",
+  "@pastYourFirstLink":{
+    "type": "text"
+  },
+  "shortenALinkHere":"Shorten a link here ...",
+  "@shortenALinkHere":{
+    "type": "text"
+  },
+  "shortenIt":"shorten it!",
+  "@shortenIt":{
+    "type": "text"
+  },
+  "pleaseAddALinkHere":"Please add a link here",
+  "@pleaseAddALinkHere":{
+    "type": "text"
+  },
+  "yourLinkHistory":"Your Link History",
+  "@yourLinkHistory":{
+    "type": "text"
+  },
+  "copy":"Copy",
+  "@copy":{
+    "type": "text"
+  },
+  "copied":"Copied!",
+  "@copied":{
+    "type": "text"
+  }
+}
