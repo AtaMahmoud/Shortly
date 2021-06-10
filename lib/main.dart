@@ -12,6 +12,7 @@ import 'package:shorty/src/services/service_locator.dart';
 import 'package:shorty/src/ui/views/main_page/main_page.dart';
 import 'package:shorty/src/util/constants.dart';
 
+import 'src/business_logic/models/shorten_url.dart';
 import 'src/theme.dart';
 import 'src/ui/views/home_page/home_page.dart';
 
@@ -24,7 +25,7 @@ void main() async {
 
 Future<void> initHive() async {
   await Hive.initFlutter();
-  await Hive.openBox(urlsBoxName);
+  await Hive.openBox<ShortenUrl>(urlsBoxName);
   await Hive.openBox(userSettingsBoxName);
 }
 
