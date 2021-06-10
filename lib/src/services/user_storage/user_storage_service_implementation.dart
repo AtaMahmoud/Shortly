@@ -6,7 +6,7 @@ class UserStorageServiceImplementation implements UserStorageService {
   final String _key = "shouldDisplayOnBoardingScreen";
   @override
   bool? getFlag() {
-    final box = Hive.box<bool>(userSettingsBoxName);
+    final box = Hive.box(userSettingsBoxName);
 
     if (!box.containsKey(_key)) return true;
 

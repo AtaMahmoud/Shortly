@@ -7,7 +7,9 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:shorty/src/business_logic/view_models/user_view_model.dart';
 import 'package:shorty/src/services/service_locator.dart';
+import 'package:shorty/src/ui/views/main_page/main_page.dart';
 import 'package:shorty/src/util/constants.dart';
 
 import 'src/theme.dart';
@@ -26,8 +28,20 @@ Future<void> initHive() async {
   await Hive.openBox(userSettingsBoxName);
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _userViewModel = serviceLocator<UserViewModel>();
+  @override
+  void initState() {
+    _userViewModel.getDisplayOnBoardingFlag();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,7 +58,10 @@ class MyApp extends StatelessWidget {
       ],
       theme: AppTheme().theme,
       routes: {
-        HomePage.routeName: (context) => HomePage(),
+        HomePage.routeName: (context) =>
+            _userViewModel.shouldDisplayOnBoardingScreens
+                ? HomePage()
+                : MainPage(),
       },
     );
   }

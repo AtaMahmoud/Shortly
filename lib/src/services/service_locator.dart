@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:shorty/src/business_logic/view_models/user_view_model.dart';
+import 'package:shorty/src/services/user/user_service.dart';
 import 'package:shorty/src/services/user/user_service_implementation.dart';
 import 'package:shorty/src/services/user_storage/user_storage_service.dart';
 import 'package:shorty/src/services/user_storage/user_storage_service_implementation.dart';
@@ -11,4 +13,8 @@ void setupServiceLocator() {
   serviceLocator.registerLazySingleton<WebApi>(() => WebApiImplementaion());
   serviceLocator.registerLazySingleton<UserStorageService>(
       () => UserStorageServiceImplementation());
+  serviceLocator
+      .registerLazySingleton<UserService>(() => UserServiceImplementation());
+
+  serviceLocator.registerLazySingleton<UserViewModel>(() => UserViewModel());
 }
