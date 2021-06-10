@@ -30,6 +30,8 @@ class _MainPageState extends State<MainPage> {
   }
 
   final _urlTextFieldController = TextEditingController();
+
+  bool _showTextFieldErrorMessage = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,8 +52,12 @@ class _MainPageState extends State<MainPage> {
                     return EmptyMainPage();
                   }
 
-                  return Column(
-                    children: [ShortenLinkCard()],
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      return ShortenLinkCard(
+                          shortenUrl: _urlsViewMode.shortenUrls[index]);
+                    },
+                    itemCount: _urlsViewMode.shortenUrls.length,
                   );
                 },
               ),
@@ -69,19 +75,31 @@ class _MainPageState extends State<MainPage> {
                           vertical: 20, horizontal: 10),
                       child: Column(
                         children: [
-                          Container(
-                            height: size.height * .08,
-                            clipBehavior: Clip.hardEdge,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6)),
-                            child: TextField(
-                              controller: _urlTextFieldController,
-                              style: AppTheme.textFieldTextStyle,
-                              textAlign: TextAlign.center,
-                              decoration: InputDecoration(
-                                hintText: "Shorten a link here ...",
-                              ),
-                            ),
+                          TextField(
+                            controller: _urlTextFieldController,
+                            style: AppTheme.textFieldTextStyle,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 10),
+                                hintText: _showTextFieldErrorMessage
+                                    ? "Please add a link here"
+                                    : "Shorten a link here ...",
+                                hintStyle: _showTextFieldErrorMessage
+                                    ? AppTheme.errorHintStyle
+                                    : AppTheme.hintStyle,
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: _showTextFieldErrorMessage
+                                            ? AppTheme.red
+                                            : Colors.transparent)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: _showTextFieldErrorMessage
+                                            ? AppTheme.red
+                                            : Colors.transparent))),
                           ),
                           SizedBox(
                             height: 10,
@@ -91,6 +109,12 @@ class _MainPageState extends State<MainPage> {
                             width: double.infinity,
                             child: ElevatedButton(
                                 onPressed: () {
+                                  if (_urlTextFieldController.text.isEmpty) {
+                                    setState(() {
+                                      _showTextFieldErrorMessage = true;
+                                    });
+                                    return;
+                                  }
                                   _urlsViewMode
                                       .shortUrl(_urlTextFieldController.text);
                                 },

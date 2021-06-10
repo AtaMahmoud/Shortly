@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shorty/src/business_logic/models/shorten_url.dart';
 
 import '../../../theme.dart';
 import '../../../util/overflow_extension.dart';
 import 'package:shorty/src/util/assets.dart';
+
 class ShortenLinkCard extends StatelessWidget {
-  const ShortenLinkCard({
-    Key? key,
-  }) : super(key: key);
+  final ShortenUrl shortenUrl;
+  const ShortenLinkCard({Key? key, required this.shortenUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,7 @@ class ShortenLinkCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    "https://github.com/ AtaMahmoudAtaaaaaaaaaaaaaaaaa"
-                        .overflow,
+                    shortenUrl.originalLink.overflow,
                     style: Theme.of(context).textTheme.bodyText1,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -49,7 +49,7 @@ class ShortenLinkCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 15.0),
             child: Text(
-              "https://github.com/AtaMahmoudAta",
+              shortenUrl.fullShortLink,
               style: Theme.of(context)
                   .textTheme
                   .bodyText1!
