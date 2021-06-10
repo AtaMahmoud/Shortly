@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:shorty/src/business_logic/view_models/urls_view_model.dart';
 import 'package:shorty/src/business_logic/view_models/user_view_model.dart';
 import 'package:shorty/src/services/url/short_url_service.dart';
 import 'package:shorty/src/services/url/short_url_service_implementation.dart';
@@ -25,4 +26,5 @@ void setupServiceLocator() {
       () => ShortUrlServiceImplementation());
 
   serviceLocator.registerLazySingleton<UserViewModel>(() => UserViewModel());
+  serviceLocator.registerSingleton(() => UrlsViewModel());
 }
