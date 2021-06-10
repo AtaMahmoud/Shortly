@@ -1,1 +1,2 @@
-const String boxName = "urls";
+const String urlsBoxName = "urls";
+const String userSettingsBoxName = "userSettings";

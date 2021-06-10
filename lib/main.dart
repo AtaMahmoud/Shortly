@@ -22,7 +22,8 @@ void main() async {
 
 Future<void> initHive() async {
   await Hive.initFlutter();
-  await Hive.openBox(boxName);
+  await Hive.openBox(urlsBoxName);
+  await Hive.openBox(userSettingsBoxName);
 }
 
 class MyApp extends StatelessWidget {
