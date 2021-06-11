@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shorty/src/business_logic/models/shorten_url.dart';
 
@@ -6,10 +7,16 @@ import '../../../theme.dart';
 import '../../../util/overflow_extension.dart';
 import 'package:shorty/src/util/assets.dart';
 
-class ShortenLinkCard extends StatelessWidget {
+class ShortenLinkCard extends StatefulWidget {
   final ShortenUrl shortenUrl;
   const ShortenLinkCard({Key? key, required this.shortenUrl}) : super(key: key);
 
+  @override
+  _ShortenLinkCardState createState() => _ShortenLinkCardState();
+}
+
+class _ShortenLinkCardState extends State<ShortenLinkCard> {
+  bool isCopied = false;
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -29,7 +36,7 @@ class ShortenLinkCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    shortenUrl.originalLink.overflow,
+                    widget.shortenUrl.originalLink.overflow,
                     style: Theme.of(context).textTheme.bodyText1,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -49,7 +56,7 @@ class ShortenLinkCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 15.0),
             child: Text(
-              shortenUrl.fullShortLink,
+              widget.shortenUrl.fullShortLink,
               style: Theme.of(context)
                   .textTheme
                   .bodyText1!
@@ -64,7 +71,29 @@ class ShortenLinkCard extends StatelessWidget {
               child: Container(
                 width: mediaQuery.size.width * .85,
                 height: mediaQuery.size.height * .075,
-                child: ElevatedButton(onPressed: () {}, child: Text("COPY")),
+                child: ElevatedButton(
+                    style: Theme.of(context)
+                        .elevatedButtonTheme
+                        .style!
+                        .copyWith(
+                          backgroundColor: MaterialStateProperty.all(
+                              isCopied ? AppTheme.darkViolet : AppTheme.cyan),
+                        ),
+                    onPressed: () {
+                      setState(() {
+                        isCopied = true;
+                      });
+
+                      Clipboard.setData(
+                          ClipboardData(text: widget.shortenUrl.fullShortLink));
+
+                      Future.delayed(Duration(seconds: 3), () {
+                        setState(() {
+                          isCopied = false;
+                        });
+                      });
+                    },
+                    child: Text(isCopied ? "COPIED!" : "COPY")),
               )),
           SizedBox(
             height: 20,

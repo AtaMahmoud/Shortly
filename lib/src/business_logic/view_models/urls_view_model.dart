@@ -11,12 +11,9 @@ class UrlsViewModel extends BaseModel {
   final _urlsService = serviceLocator<ShortUrlService>();
 
   Future<void> shortUrl(String url) async {
-    updateState(ViewState.busy);
-
     final _shortenUrl = await _urlsService.shortUrl(url);
     _shortenUrls.add(_shortenUrl);
-
-    updateState(ViewState.idle);
+    notifyListeners();
   }
 
   Future<void> getShortUrlsHistory() async {

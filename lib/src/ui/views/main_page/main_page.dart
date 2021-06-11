@@ -6,6 +6,7 @@ import 'package:shorty/src/business_logic/view_models/urls_view_model.dart';
 import 'package:shorty/src/services/service_locator.dart';
 
 import 'package:shorty/src/theme.dart';
+import 'package:shorty/src/ui/shared/loading_dialog.dart';
 import 'package:shorty/src/ui/shared/logo.dart';
 import 'package:shorty/src/ui/shared/responsive_safe_area.dart';
 import 'package:shorty/src/util/assets.dart';
@@ -108,15 +109,19 @@ class _MainPageState extends State<MainPage> {
                             height: size.height * .08,
                             width: double.infinity,
                             child: ElevatedButton(
-                                onPressed: () {
+                                onPressed: () async {
                                   if (_urlTextFieldController.text.isEmpty) {
                                     setState(() {
                                       _showTextFieldErrorMessage = true;
                                     });
                                     return;
                                   }
-                                  _urlsViewMode
+
+                                  loadingDialog("Shorting your url...",
+                                   context);
+                                  await _urlsViewMode
                                       .shortUrl(_urlTextFieldController.text);
+                                  Navigator.of(context).pop();
                                 },
                                 child: Text("SHORTEN IT!")),
                           )
