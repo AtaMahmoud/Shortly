@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shorty/src/business_logic/models/shorten_url.dart';
+import 'package:shorty/src/business_logic/view_models/urls_view_model.dart';
+import 'package:shorty/src/services/service_locator.dart';
 
 import '../../../theme.dart';
 import '../../../util/overflow_extension.dart';
@@ -45,7 +47,12 @@ class _ShortenLinkCardState extends State<ShortenLinkCard> {
                 SizedBox(
                   width: 4,
                 ),
-                SvgPicture.asset(delete)
+                GestureDetector(
+                    onTap: () {
+                      serviceLocator<UrlsViewModel>()
+                          .removeUrlFromHistory(widget.shortenUrl);
+                    },
+                    child: SvgPicture.asset(delete))
               ],
             ),
           ),

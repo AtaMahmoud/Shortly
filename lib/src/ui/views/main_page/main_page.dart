@@ -24,9 +24,17 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final _urlsViewMode = serviceLocator<UrlsViewModel>();
+  final _urlTextFieldFoucsNode = FocusNode();
   @override
   void initState() {
     _urlsViewMode.getShortUrlsHistory();
+    _urlTextFieldFoucsNode.addListener(() {
+      if (_showTextFieldErrorMessage) {
+        setState(() {
+          _showTextFieldErrorMessage = false;
+        });
+      }
+    });
     super.initState();
   }
 
@@ -56,6 +64,7 @@ class _MainPageState extends State<MainPage> {
                   return ListView.builder(
                     itemBuilder: (context, index) {
                       return ShortenLinkCard(
+                          key: ValueKey(index),
                           shortenUrl: _urlsViewMode.shortenUrls[index]);
                     },
                     itemCount: _urlsViewMode.shortenUrls.length,
@@ -77,6 +86,7 @@ class _MainPageState extends State<MainPage> {
                       child: Column(
                         children: [
                           TextField(
+                            focusNode: _urlTextFieldFoucsNode,
                             controller: _urlTextFieldController,
                             style: AppTheme.textFieldTextStyle,
                             textAlign: TextAlign.center,
@@ -117,8 +127,8 @@ class _MainPageState extends State<MainPage> {
                                     return;
                                   }
 
-                                  loadingDialog("Shorting your url...",
-                                   context);
+                                  loadingDialog(
+                                      "Shorting your url...", context);
                                   await _urlsViewMode
                                       .shortUrl(_urlTextFieldController.text);
                                   Navigator.of(context).pop();

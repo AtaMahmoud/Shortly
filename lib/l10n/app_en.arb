@@ -1,10 +1,10 @@
 {
-  "appTitle": "Shorty",
+  "appTitle": "Shortly",
   "@appTitle": {
     "type": "text"
   },
 
-  "moreThanJustShorterLinks":"More than just \n shorter links",
+  "moreThanJustShorterLinks":"More than just shorter links",
   "@moreThanJustShorterLinks": {
     "type": "text"
   },

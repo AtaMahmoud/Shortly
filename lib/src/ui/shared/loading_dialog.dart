@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shorty/src/theme.dart';
 
+import '../../themes/app_theme.dart';
+
+/// Display Dialog with [loadingText] as an loading text message
 void loadingDialog(String loadingText, BuildContext context) {
   showDialog(
       context: context,

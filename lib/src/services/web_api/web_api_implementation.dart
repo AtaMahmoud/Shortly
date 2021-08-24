@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-import 'package:shorty/src/business_logic/models/failure.dart';
-import 'package:shorty/src/business_logic/models/shorten_url.dart';
-import 'package:shorty/src/services/web_api/web_api.dart';
+import '../../business_logic/models/failure.dart';
+import '../../business_logic/models/short_url.dart';
+import './web_api.dart';
+
+
 
 class WebApiImplementaion implements WebApi {
   final Dio _dio = Dio(BaseOptions(
@@ -12,11 +14,11 @@ class WebApiImplementaion implements WebApi {
       contentType: Headers.jsonContentType));
 
   @override
-  Future<ShortenUrl> shortUrl(String url) async {
+  Future<ShortUrl> shortUrl(String url) async {
     try {
       final response =
           await _dio.post("/shorten", queryParameters: {'url': url});
-      return ShortenUrl.fromJson(response.data['result']);
+      return ShortUrl.fromJson(response.data['result']);
     
     // ignore: avoid_catches_without_on_clauses
     } catch (e) {
@@ -25,6 +27,7 @@ class WebApiImplementaion implements WebApi {
   }
 }
 
+/// Get failure exception according to [error] type
 Failure getCurrentFailure(error) {
   try {
     Failure failure;
@@ -85,9 +88,14 @@ Failure _formateExceptionFailure(FormatException error) {
   return Failure(
       error: error,
       errorMessage:
+          // ignore: lines_longer_than_80_chars
           "Data does not have an expected format and cannot be parsed or processed");
 }
 
+/// return error message according to [errorCode]
+/// 
+/// return "Unknown error" if [errorCode] is not valid key for 
+/// [errorCodeMessages]
 String? _getErrorMessage(int errorCode) {
   final errorCodeMessages = <int, String>{
     1: "No URL specified",

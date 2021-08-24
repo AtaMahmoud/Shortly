@@ -2,14 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-// ignore: public_member_api_docs
+/// Signature of the custom builder method definition
 typedef ResponsiveBuilder = Widget Function(
   BuildContext context,
   Size size,
 );
 
+/// widget to get the [size] of the available space inside the [SafeAra],
+/// down to its children
+/// disable the [bottom] padding for iOS devices
 class ResponsiveSafeArea extends StatelessWidget {
-  // ignore: public_member_api_docs
   const ResponsiveSafeArea({
     required ResponsiveBuilder builder,
     Key? key,

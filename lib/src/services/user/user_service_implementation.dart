@@ -1,7 +1,6 @@
-import 'package:shorty/src/services/user/user_service.dart';
-import 'package:shorty/src/services/user_storage/user_storage_service.dart';
-
 import '../service_locator.dart';
+import '../user/user_service.dart';
+import '../user_storage/user_storage_service.dart';
 
 class UserServiceImplementation implements UserService {
   final userStorageService = serviceLocator<UserStorageService>();
